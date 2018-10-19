@@ -16,6 +16,7 @@ import android.widget.FrameLayout;
 
 import com.shehabic.droppy.animations.DroppyAnimation;
 import com.shehabic.droppy.views.DroppyMenuContainerView;
+import com.shehabic.droppy.views.DroppyMenuPopupView;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class DroppyMenuPopup {
     protected View anchor;
     protected List<DroppyMenuItemInterface> menuItems;
     protected View mContentView;
-    protected com.shehabic.droppy.views.DroppyMenuPopupView mPopupView;
+    protected DroppyMenuPopupView mPopupView;
     protected DroppyMenuContainerView droppyMenuContainer;
     protected DroppyClickCallbackInterface droppyClickCallbackInterface;
     protected int popupMenuLayoutResourceId;
@@ -167,7 +168,7 @@ public class DroppyMenuPopup {
             if (mPopupView != null && mPopupView.getChildCount() > 0) {
                 mPopupView.removeAllViews();
             }
-            mPopupView = new com.shehabic.droppy.views.DroppyMenuPopupView(mContext);
+            mPopupView = new DroppyMenuPopupView(mContext);
             droppyMenuContainer = new DroppyMenuContainerView(mContext);
             mPopupView.addView(droppyMenuContainer);
             FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);

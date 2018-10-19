@@ -6,13 +6,14 @@ import android.view.View;
 
 import com.shehabic.droppy.views.DroppyMenuItemIconView;
 import com.shehabic.droppy.views.DroppyMenuItemTitleView;
+import com.shehabic.droppy.views.DroppyMenuItemView;
 
 /**
  * Created by shehabic on 2/28/15.
  */
 public class DroppyMenuItem extends DroppyMenuItemAbstract {
     private Drawable iconDrawable;
-    protected com.shehabic.droppy.views.DroppyMenuItemView renderedView;
+    protected DroppyMenuItemView renderedView;
 
     void initMenuItem(String title, int iconResourceId) {
         this.title = title;
@@ -36,7 +37,7 @@ public class DroppyMenuItem extends DroppyMenuItemAbstract {
 
     @Override
     public View render(Context context) {
-        renderedView = new com.shehabic.droppy.views.DroppyMenuItemView(context);
+        renderedView = new DroppyMenuItemView(context);
 
         if (this.icon != -1) {
             DroppyMenuItemIconView droppyMenuItemIcon = new DroppyMenuItemIconView(context);

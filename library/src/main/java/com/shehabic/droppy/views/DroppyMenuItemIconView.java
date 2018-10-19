@@ -2,6 +2,7 @@ package com.shehabic.droppy.views;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.ViewGroup;
@@ -12,7 +13,7 @@ import com.shehabic.droppy.R;
 /**
  * Created by shehabic on 3/7/15.
  */
-public class DroppyMenuItemIconView extends android.support.v7.widget.AppCompatImageView {
+public class DroppyMenuItemIconView extends AppCompatImageView {
     public DroppyMenuItemIconView(Context context) {
         this(context, null);
     }
