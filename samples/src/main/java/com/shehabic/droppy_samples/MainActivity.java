@@ -1,8 +1,7 @@
 package com.shehabic.droppy_samples;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,7 +19,7 @@ import com.shehabic.droppy.animations.DroppyScaleAnimation;
 /**
  * Created by shehabic on 3/21/15.
  */
-public class MainActivity extends ActionBarActivity implements DroppyMenuPopup.OnDismissCallback, DroppyClickCallbackInterface {
+public class MainActivity extends AppCompatActivity implements DroppyMenuPopup.OnDismissCallback, DroppyClickCallbackInterface {
 
     DroppyMenuPopup droppyMenu;
     Button btn;
@@ -32,7 +31,7 @@ public class MainActivity extends ActionBarActivity implements DroppyMenuPopup.O
     protected void showDroppyMenu()
     {
         droppyMenu.show();
-        SeekBar sBar = (SeekBar) droppyMenu.getMenuView().findViewById(R.id.seekBar1);
+        SeekBar sBar = droppyMenu.getMenuView().findViewById(R.id.seekBar1);
         sBar.setProgress(seekbarValue);
         sBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -54,7 +53,7 @@ public class MainActivity extends ActionBarActivity implements DroppyMenuPopup.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btn = (Button) findViewById(R.id.button);
+        btn = findViewById(R.id.button);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,7 +62,7 @@ public class MainActivity extends ActionBarActivity implements DroppyMenuPopup.O
             }
         });
 
-        btn2 = (Button) findViewById(R.id.button2);
+        btn2 = findViewById(R.id.button2);
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,7 +71,7 @@ public class MainActivity extends ActionBarActivity implements DroppyMenuPopup.O
             }
         });
 
-        btn3 = (Button) findViewById(R.id.button3);
+        btn3 = findViewById(R.id.button3);
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
