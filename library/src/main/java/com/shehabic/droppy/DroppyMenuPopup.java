@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
@@ -149,8 +150,15 @@ public class DroppyMenuPopup {
 
     protected void dismissPopup(boolean itemSelected) {
         if (mContentView != null && modalWindow != null) {
-            ((ViewGroup) mContentView.getParent()).removeView(mContentView);
-            ((ViewGroup) modalWindow.getParent()).removeView(modalWindow);
+            ViewParent contentParent = mContentView.getParent();
+            if (contentParent instanceof ViewGroup) {
+                ((ViewGroup) contentParent).removeView(mContentView);
+            }
+
+            ViewParent modalParent = modalWindow.getParent();
+            if (modalParent instanceof ViewGroup) {
+                ((ViewGroup) modalParent).removeView(modalWindow);
+            }
 
             if (!itemSelected && this.mOnDismissCallback != null) {
                 mOnDismissCallback.call();
@@ -273,7 +281,6 @@ public class DroppyMenuPopup {
         params.leftMargin = Math.max(0, finalX);
         params.topMargin = Math.max(0, finalY);
         params.gravity = Gravity.LEFT | Gravity.TOP;
-
 
         int maxDistanceAbove = anchorPosition.y;
         int maxDistanceBelow = screen.y - anchorHeight - anchorPosition.y - offsetY;
@@ -410,7 +417,8 @@ public class DroppyMenuPopup {
         }
 
         public DroppyMenuPopup build() {
-            DroppyMenuPopup popup = new DroppyMenuPopup(ctx, parentMenuItem, menuItems, callbackInterface, triggerOnAnchorClick, -1, onDismissCallback);
+            DroppyMenuPopup popup =
+                    new DroppyMenuPopup(ctx, parentMenuItem, menuItems, callbackInterface, triggerOnAnchorClick, -1, onDismissCallback);
             popup.setOffsetX(offsetX);
             popup.setOffsetY(offsetY);
             popup.setPopupAnimation(droppyAnimation);
