@@ -19,10 +19,6 @@ import com.shehabic.droppy.animations.DroppyScaleAnimation;
  */
 public class MainActivity extends AppCompatActivity implements DroppyMenuPopup.OnDismissCallback, DroppyClickCallbackInterface {
     DroppyMenuPopup droppyMenu;
-    Button btn;
-    Button btn2;
-    Button btn3;
-
     protected int seekbarValue = 0;
 
     protected void showDroppyMenu() {
@@ -49,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements DroppyMenuPopup.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btn = findViewById(R.id.button);
+        final Button btn = findViewById(R.id.button);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements DroppyMenuPopup.O
             }
         });
 
-        btn2 = findViewById(R.id.button2);
+        final Button btn2 = findViewById(R.id.button2);
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements DroppyMenuPopup.O
             }
         });
 
-        btn3 = findViewById(R.id.button3);
+        final Button btn3 = findViewById(R.id.button3);
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

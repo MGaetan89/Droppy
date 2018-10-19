@@ -235,9 +235,9 @@ public class DroppyMenuPopup {
             statusBarHeight = 0;
         } else if (statusBarHeight == -1) {
             int result = 0;
-            int resourceId = anchor.getContext().getResources().getIdentifier("status_bar_height", "dimen", "android");
+            int resourceId = anchor.getResources().getIdentifier("status_bar_height", "dimen", "android");
             if (resourceId > 0) {
-                result = anchor.getContext().getResources().getDimensionPixelSize(resourceId);
+                result = anchor.getResources().getDimensionPixelSize(resourceId);
             }
             statusBarHeight = result;
         }
@@ -266,7 +266,7 @@ public class DroppyMenuPopup {
             finalX = screen.x - (mPopupWidth + xOffset);
         }
 
-        if ((finalY + mPopupHeight) > screen.y /*&& p.y > mPopupHeight*/) {
+        if ((finalY + mPopupHeight) > screen.y) {
             finalY = anchorPosition.y - mPopupHeight - (-1 * yOffset);
         }
 
@@ -279,7 +279,7 @@ public class DroppyMenuPopup {
         int maxDistanceBelow = screen.y - anchorHeight - anchorPosition.y - offsetY;
         boolean popupAboveAnchor = maxDistanceAbove > maxDistanceBelow;
         boolean noRoomAbove = popupAboveAnchor && (anchorPosition.y < mPopupHeight);
-        boolean noRoomBelow = !popupAboveAnchor && (mPopupHeight > (maxDistanceBelow));
+        boolean noRoomBelow = !popupAboveAnchor && (mPopupHeight > maxDistanceBelow);
         if (noRoomAbove || noRoomBelow) {
             if (popupAboveAnchor) {
                 params.height = maxDistanceAbove;
