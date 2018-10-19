@@ -5,23 +5,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-
 import android.widget.ListView;
-
 import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class DefaultExampleActivity
-
-    extends Activity {
-
+public class DefaultExampleActivity extends Activity {
     protected ListView listView;
 
     @Override
@@ -32,7 +27,7 @@ public class DefaultExampleActivity
     }
 
     private void initListView() {
-        listView = (ListView) findViewById(R.id.activity_selector);
+        listView = findViewById(R.id.activity_selector);
         final List<Class> classes = new ArrayList<>();
         final List<String> items = new ArrayList<>();
         classes.add(MainActivity.class);
@@ -55,13 +50,11 @@ public class DefaultExampleActivity
         });
     }
 
-    class ActivitySelectorAdapter extends BaseAdapter
-    {
-        protected List<String> items;
-        protected Context ctx;
+    class ActivitySelectorAdapter extends BaseAdapter {
+        List<String> items;
+        Context ctx;
 
-        public ActivitySelectorAdapter(Context ctx, List<String> items)
-        {
+        ActivitySelectorAdapter(Context ctx, List<String> items) {
             this.ctx = ctx;
             this.items = items;
         }
@@ -89,7 +82,7 @@ public class DefaultExampleActivity
                 convertView = inflater.inflate(android.R.layout.simple_list_item_2, parent, false);
             }
 
-            TextView textViewItem = (TextView) convertView.findViewById(android.R.id.text1);
+            TextView textViewItem = convertView.findViewById(android.R.id.text1);
             textViewItem.setText(items.get(position));
             textViewItem.setTag(getItemId(position));
 
@@ -97,4 +90,3 @@ public class DefaultExampleActivity
         }
     }
 }
-

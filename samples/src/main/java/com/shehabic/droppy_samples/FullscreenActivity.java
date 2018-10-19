@@ -1,11 +1,5 @@
 package com.shehabic.droppy_samples;
 
-import com.shehabic.droppy.DroppyClickCallbackInterface;
-import com.shehabic.droppy.DroppyMenuCustomItem;
-import com.shehabic.droppy.DroppyMenuItem;
-import com.shehabic.droppy.DroppyMenuPopup;
-import com.shehabic.droppy_samples.util.SystemUiHider;
-
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.Build;
@@ -17,6 +11,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
 
+import com.shehabic.droppy.DroppyClickCallbackInterface;
+import com.shehabic.droppy.DroppyMenuCustomItem;
+import com.shehabic.droppy.DroppyMenuItem;
+import com.shehabic.droppy.DroppyMenuPopup;
+import com.shehabic.droppy_samples.util.SystemUiHider;
+
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -25,7 +25,6 @@ import android.widget.SeekBar;
  * @see SystemUiHider
  */
 public class FullscreenActivity extends Activity {
-
     DroppyMenuPopup droppyMenu;
     Button btn;
     int seekbarValue = 0;
@@ -72,15 +71,14 @@ public class FullscreenActivity extends Activity {
         mSystemUiHider = SystemUiHider.getInstance(this, contentView, HIDER_FLAGS);
         mSystemUiHider.setup();
         mSystemUiHider
-            .setOnVisibilityChangeListener(new SystemUiHider.OnVisibilityChangeListener() {
-                // Cached values.
-                int mControlsHeight;
-                int mShortAnimTime;
+                .setOnVisibilityChangeListener(new SystemUiHider.OnVisibilityChangeListener() {
+                    // Cached values.
+                    int mControlsHeight;
+                    int mShortAnimTime;
 
-                @Override
-                @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-                public void onVisibilityChange(boolean visible) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
+                    @Override
+                    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
+                    public void onVisibilityChange(boolean visible) {
                         // If the ViewPropertyAnimator API is available
                         // (Honeycomb MR2 and later), use it to animate the
                         // in-layout UI controls at the bottom of the
@@ -89,25 +87,18 @@ public class FullscreenActivity extends Activity {
                             mControlsHeight = controlsView.getHeight();
                         }
                         if (mShortAnimTime == 0) {
-                            mShortAnimTime = getResources().getInteger(
-                                android.R.integer.config_shortAnimTime);
+                            mShortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
                         }
                         controlsView.animate()
-                            .translationY(visible ? 0 : mControlsHeight)
-                            .setDuration(mShortAnimTime);
-                    } else {
-                        // If the ViewPropertyAnimator APIs aren't
-                        // available, simply show or hide the in-layout UI
-                        // controls.
-                        controlsView.setVisibility(visible ? View.VISIBLE : View.GONE);
-                    }
+                                .translationY(visible ? 0 : mControlsHeight)
+                                .setDuration(mShortAnimTime);
 
-                    if (visible && AUTO_HIDE) {
-                        // Schedule a hide().
-                        delayedHide(AUTO_HIDE_DELAY_MILLIS);
+                        if (visible && AUTO_HIDE) {
+                            // Schedule a hide().
+                            delayedHide(AUTO_HIDE_DELAY_MILLIS);
+                        }
                     }
-                }
-            });
+                });
 
         // Set up the user interaction to manually show or hide the system UI.
         contentView.setOnClickListener(new View.OnClickListener() {
@@ -137,7 +128,6 @@ public class FullscreenActivity extends Activity {
         // are available.
         delayedHide(100);
     }
-
 
     /**
      * Touch listener to use for in-layout UI controls to delay hiding the
@@ -171,9 +161,8 @@ public class FullscreenActivity extends Activity {
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
 
-    protected void initButtons()
-    {
-        btn = (Button) findViewById(R.id.menuButton);
+    protected void initButtons() {
+        btn = findViewById(R.id.menuButton);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -183,14 +172,13 @@ public class FullscreenActivity extends Activity {
         });
     }
 
-    private void initDroppyMenu(Button btn)
-    {
+    private void initDroppyMenu(Button btn) {
         DroppyMenuPopup.Builder droppyBuilder = new DroppyMenuPopup.Builder(this, btn);
         droppyBuilder.addMenuItem(new DroppyMenuItem("test1"))
-            .addMenuItem(new DroppyMenuItem("test2"))
-            .addSeparator()
-            .addMenuItem(new DroppyMenuItem("test3", R.drawable.ic_launcher))
-            .triggerOnAnchorClick(false);
+                .addMenuItem(new DroppyMenuItem("test2"))
+                .addSeparator()
+                .addMenuItem(new DroppyMenuItem("test3", R.drawable.ic_launcher))
+                .triggerOnAnchorClick(false);
 
         DroppyMenuCustomItem sBarItem = new DroppyMenuCustomItem(R.layout.slider);
         droppyBuilder.addMenuItem(sBarItem);
@@ -204,10 +192,9 @@ public class FullscreenActivity extends Activity {
         droppyMenu = droppyBuilder.build();
     }
 
-    protected void showDroppyMenu()
-    {
+    protected void showDroppyMenu() {
         droppyMenu.show();
-        SeekBar sBar = (SeekBar) droppyMenu.getMenuView().findViewById(R.id.seekBar1);
+        SeekBar sBar = droppyMenu.getMenuView().findViewById(R.id.seekBar1);
         sBar.setProgress(seekbarValue);
         sBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -224,5 +211,4 @@ public class FullscreenActivity extends Activity {
             }
         });
     }
-
 }

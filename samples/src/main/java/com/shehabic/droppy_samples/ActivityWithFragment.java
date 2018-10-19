@@ -1,8 +1,9 @@
 package com.shehabic.droppy_samples;
 
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,19 +20,16 @@ import com.shehabic.droppy.DroppyMenuPopup;
 
 
 public class ActivityWithFragment extends FragmentActivity {
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activity_with_fragment);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                .add(R.id.container, new PlaceholderFragment())
-                .commit();
+                    .add(R.id.container, new PlaceholderFragment())
+                    .commit();
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -59,7 +57,6 @@ public class ActivityWithFragment extends FragmentActivity {
      * A placeholder fragment containing a simple view.
      */
     public static class PlaceholderFragment extends Fragment {
-
         DroppyMenuPopup droppyMenu;
         Button btn;
         int seekbarValue = 0;
@@ -69,16 +66,14 @@ public class ActivityWithFragment extends FragmentActivity {
         }
 
         @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
+        public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_activity_with, container, false);
             initButtons(rootView);
             return rootView;
         }
 
-        protected void initButtons(View rootView)
-        {
-            btn = (Button) rootView.findViewById(R.id.menuButton);
+        protected void initButtons(View rootView) {
+            btn = rootView.findViewById(R.id.menuButton);
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -88,14 +83,13 @@ public class ActivityWithFragment extends FragmentActivity {
             });
         }
 
-        private void initDroppyMenu(Button btn)
-        {
+        private void initDroppyMenu(Button btn) {
             DroppyMenuPopup.Builder droppyBuilder = new DroppyMenuPopup.Builder(btn.getContext(), btn);
             droppyBuilder.addMenuItem(new DroppyMenuItem("test1"))
-                .addMenuItem(new DroppyMenuItem("test2"))
-                .addSeparator()
-                .addMenuItem(new DroppyMenuItem("test3", R.drawable.ic_launcher))
-                .triggerOnAnchorClick(false);
+                    .addMenuItem(new DroppyMenuItem("test2"))
+                    .addSeparator()
+                    .addMenuItem(new DroppyMenuItem("test3", R.drawable.ic_launcher))
+                    .triggerOnAnchorClick(false);
 
             DroppyMenuCustomItem sBarItem = new DroppyMenuCustomItem(R.layout.slider);
             droppyBuilder.addMenuItem(sBarItem);
@@ -110,10 +104,9 @@ public class ActivityWithFragment extends FragmentActivity {
             droppyMenu = droppyBuilder.build();
         }
 
-        protected void showDroppyMenu()
-        {
+        protected void showDroppyMenu() {
             droppyMenu.show();
-            SeekBar sBar = (SeekBar) droppyMenu.getMenuView().findViewById(R.id.seekBar1);
+            SeekBar sBar = droppyMenu.getMenuView().findViewById(R.id.seekBar1);
             sBar.setProgress(seekbarValue);
             sBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                 @Override

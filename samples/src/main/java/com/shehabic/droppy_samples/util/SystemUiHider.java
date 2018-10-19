@@ -1,7 +1,6 @@
 package com.shehabic.droppy_samples.util;
 
 import android.app.Activity;
-import android.os.Build;
 import android.view.View;
 
 /**
@@ -92,11 +91,7 @@ public abstract class SystemUiHider {
      *                   {@link #FLAG_LAYOUT_IN_SCREEN_OLDER_DEVICES}.
      */
     public static SystemUiHider getInstance(Activity activity, View anchorView, int flags) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            return new SystemUiHiderHoneycomb(activity, anchorView, flags);
-        } else {
-            return new SystemUiHiderBase(activity, anchorView, flags);
-        }
+        return new SystemUiHiderHoneycomb(activity, anchorView, flags);
     }
 
     protected SystemUiHider(Activity activity, View anchorView, int flags) {
@@ -167,6 +162,6 @@ public abstract class SystemUiHider {
          *
          * @param visible True if the system UI is visible.
          */
-        public void onVisibilityChange(boolean visible);
+        void onVisibilityChange(boolean visible);
     }
 }
