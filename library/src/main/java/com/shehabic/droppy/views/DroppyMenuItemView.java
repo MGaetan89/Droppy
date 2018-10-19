@@ -14,7 +14,6 @@ import com.shehabic.droppy.R;
  * Created by shehabic on 3/7/15.
  */
 public class DroppyMenuItemView extends LinearLayout {
-
     public DroppyMenuItemView(Context context) {
         this(context, null);
     }

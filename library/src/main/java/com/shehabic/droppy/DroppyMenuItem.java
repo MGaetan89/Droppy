@@ -11,7 +11,6 @@ import com.shehabic.droppy.views.DroppyMenuItemTitleView;
  * Created by shehabic on 2/28/15.
  */
 public class DroppyMenuItem extends DroppyMenuItemAbstract {
-
     private Drawable iconDrawable;
     protected com.shehabic.droppy.views.DroppyMenuItemView renderedView;
 
@@ -37,7 +36,6 @@ public class DroppyMenuItem extends DroppyMenuItemAbstract {
 
     @Override
     public View render(Context context) {
-
         renderedView = new com.shehabic.droppy.views.DroppyMenuItemView(context);
 
         if (this.icon != -1) {

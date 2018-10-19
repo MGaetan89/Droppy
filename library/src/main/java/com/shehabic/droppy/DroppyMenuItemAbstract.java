@@ -9,9 +9,9 @@ import android.view.ViewGroup;
  * Created by shehabic on 2/28/15.
  */
 public abstract class DroppyMenuItemAbstract implements DroppyMenuItemInterface {
-    final protected static int TYPE_MENU_ITEM = 0;
-    final protected static int TYPE_CUSTOM = 1;
-    final protected static int TYPE_MENU_SEPARATOR = 2;
+    protected static final int TYPE_MENU_ITEM = 0;
+    protected static final int TYPE_CUSTOM = 1;
+    protected static final int TYPE_MENU_SEPARATOR = 2;
 
     protected String title;
     protected int icon = -1;

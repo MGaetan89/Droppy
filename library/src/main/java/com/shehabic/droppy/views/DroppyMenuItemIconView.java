@@ -5,7 +5,6 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.shehabic.droppy.R;
@@ -14,7 +13,6 @@ import com.shehabic.droppy.R;
  * Created by shehabic on 3/7/15.
  */
 public class DroppyMenuItemIconView extends android.support.v7.widget.AppCompatImageView {
-
     public DroppyMenuItemIconView(Context context) {
         this(context, null);
     }
@@ -47,7 +45,7 @@ public class DroppyMenuItemIconView extends android.support.v7.widget.AppCompatI
         lp.weight = a.getFloat(R.styleable.DroppyMenuItemIconView_android_layout_weight, defaultWeight);
         lp.gravity = a.getInteger(R.styleable.DroppyMenuItemIconView_android_layout_gravity, defaultLayoutGravity);
 
-        setMaxHeight(maxWidth);
+        setMaxWidth(maxWidth);
         setMaxHeight(maxHeight);
         setLayoutParams(lp);
         a.recycle();

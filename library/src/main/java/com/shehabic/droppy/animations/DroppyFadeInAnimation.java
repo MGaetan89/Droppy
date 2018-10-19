@@ -8,7 +8,6 @@ import com.shehabic.droppy.DroppyMenuPopup;
 import com.shehabic.droppy.views.DroppyMenuPopupView;
 
 public class DroppyFadeInAnimation implements DroppyAnimation {
-
     private static int ANIMATION_DURATION = 200;
 
     @Override

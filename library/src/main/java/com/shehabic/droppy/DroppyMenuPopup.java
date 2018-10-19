@@ -24,7 +24,7 @@ import java.util.List;
 public class DroppyMenuPopup {
     protected Context mContext;
     protected View anchor;
-    protected List<DroppyMenuItemInterface> menuItems = new ArrayList<DroppyMenuItemInterface>();
+    protected List<DroppyMenuItemInterface> menuItems;
     protected View mContentView;
     protected com.shehabic.droppy.views.DroppyMenuPopupView mPopupView;
     protected DroppyMenuContainerView droppyMenuContainer;
@@ -48,17 +48,17 @@ public class DroppyMenuPopup {
     }
 
     public interface OnDismissCallback {
-        public void call();
+        void call();
     }
 
     protected DroppyMenuPopup(
-        Context mContext,
-        View parentMenuItem,
-        List<DroppyMenuItemInterface> menuItem,
-        DroppyClickCallbackInterface droppyClickCallbackInterface,
-        boolean addTriggerOnAnchorClick,
-        int popupMenuLayoutResourceId,
-        OnDismissCallback onDismissCallback
+            Context mContext,
+            View parentMenuItem,
+            List<DroppyMenuItemInterface> menuItem,
+            DroppyClickCallbackInterface droppyClickCallbackInterface,
+            boolean addTriggerOnAnchorClick,
+            int popupMenuLayoutResourceId,
+            OnDismissCallback onDismissCallback
     ) {
         this.mContext = mContext;
         this.anchor = parentMenuItem;
@@ -129,7 +129,6 @@ public class DroppyMenuPopup {
             try {
                 ((ViewGroup) mPopupView.getParent()).removeView(mPopupView);
             } catch (Exception e) {
-
             }
         }
     }
@@ -165,8 +164,8 @@ public class DroppyMenuPopup {
 
     protected void render(boolean forceRender) {
         if (mPopupView == null || forceRender) {
-            if (mPopupView != null && ((ViewGroup) mPopupView).getChildCount() > 0) {
-                ((ViewGroup) mPopupView).removeAllViews();
+            if (mPopupView != null && mPopupView.getChildCount() > 0) {
+                mPopupView.removeAllViews();
             }
             mPopupView = new com.shehabic.droppy.views.DroppyMenuPopupView(mContext);
             droppyMenuContainer = new DroppyMenuContainerView(mContext);
@@ -311,7 +310,7 @@ public class DroppyMenuPopup {
     public static class Builder {
         protected Context ctx;
         protected View parentMenuItem;
-        protected List<DroppyMenuItemInterface> menuItems = new ArrayList<DroppyMenuItemInterface>();
+        protected List<DroppyMenuItemInterface> menuItems = new ArrayList<>();
         protected DroppyClickCallbackInterface callbackInterface;
         protected boolean triggerOnAnchorClick = true;
         protected OnDismissCallback onDismissCallback;
@@ -399,12 +398,11 @@ public class DroppyMenuPopup {
 
         protected Menu newMenuInstance(Context context) {
             try {
-                Class<?> menuBuilderClass = Class.forName("com.android.internal.view.menu.MenuBuilder");
+                Class<?> menuBuilderClass = Class.forName("android.support.v7.view.menu.MenuBuilder");
                 Constructor<?> constructor = menuBuilderClass.getDeclaredConstructor(Context.class);
 
                 return (Menu) constructor.newInstance(context);
             } catch (Exception e) {
-
             }
 
             return null;
@@ -420,5 +418,3 @@ public class DroppyMenuPopup {
         }
     }
 }
-
-

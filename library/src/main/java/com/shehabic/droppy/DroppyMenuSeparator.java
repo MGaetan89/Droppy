@@ -7,7 +7,6 @@ import android.view.View;
  * Created by shehabic on 2/28/15.
  */
 public class DroppyMenuSeparator extends DroppyMenuItemAbstract {
-
     public DroppyMenuSeparator() {
         type = TYPE_MENU_SEPARATOR;
         setId(-1);

@@ -8,7 +8,6 @@ import android.view.View;
  * Created by shehabic on 3/1/15.
  */
 public class DroppyMenuCustomItem extends DroppyMenuItemAbstract {
-
     public DroppyMenuCustomItem(int customResourceId) {
         isClickable = false;
         type = TYPE_CUSTOM;
